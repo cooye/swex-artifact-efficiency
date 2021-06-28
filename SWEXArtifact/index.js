@@ -36,13 +36,13 @@ module.exports = {
         const newLevel = resp.artifact.level;
 
         if (newLevel > artifactLevel && newLevel % 3 === 0 && newLevel <= 12) {
-          artifactsInfo.push(this.logartifactDrop(proxy, resp.artifact));
+          artifactsInfo.push(this.logartifactDrop(resp.artifact));
         }
 		artifactLevel = newLevel;
         break;
       }
 	  case 'ConfirmArtifactConversion': {
-          artifactsInfo.push(this.logartifactDrop(proxy, resp.artifact));
+          artifactsInfo.push(this.logartifactDrop(resp.artifact));
         break;
       }
 
@@ -58,9 +58,9 @@ module.exports = {
     }
   },
 
-  logartifactDrop(proxy, artifact) {
+  logartifactDrop(artifact) {
 	  try{
-			const efficiency = this.getArtifactEfficiency(proxy, artifact);
+			const efficiency = this.getArtifactEfficiency(artifact);
 			const artifactQuality = artifact.rank;
 			const artifactType = this.getArtifactTypeName(artifact.type);
 			let artifactCategory = this.getArtifactUnitStyleName(artifact.unit_style)=="" ? this.getArtifactAttributeName(artifact.attribute) : this.getArtifactUnitStyleName(artifact.unit_style);
