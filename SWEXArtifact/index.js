@@ -91,7 +91,7 @@ module.exports = {
 					  </div>
 					</div>`;
 		  } catch (e) {
-			proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop-${e.message}` });
+			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop-${e.message}` });
       }
 	  }
 		  ,
@@ -109,7 +109,7 @@ module.exports = {
 	return html.concat('</div>');
 		
   },
-  getArtifactEfficiency(proxy, artifact, toFixed = 2) {
+  getArtifactEfficiency(artifact, toFixed = 2) {
     let ratio = 0.0;
 
     artifact.sec_effects.forEach(stat => {
