@@ -5,7 +5,7 @@ module.exports = {
     enabled: true
   },
   pluginName: 'ArtifactDropEfficiency',
-  pluginDescription: 'SWEXArtifact by Kiyyun. Logs the maximum possible efficiency for artifacts as they drop. Adapted from artifact-drop-efficiency by Xzandro.',
+  pluginDescription: 'SWEXArtifact by Kiyyun. Logs the maximum possible efficiency for artifacts as they drop and are upgraded. Adapted from rune-drop-efficiency by Xzandro.',
   init(proxy) {
     proxy.on('apiCommand', (req, resp) => {
       if (config.Config.Plugins[this.pluginName].enabled) {
@@ -35,10 +35,14 @@ module.exports = {
       case 'UpgradeArtifact': {
         const newLevel = resp.artifact.level;
 
-        //if (newLevel > artifactLevel && newLevel % 3 === 0 && newLevel <= 12) {
+        if (newLevel > artifactLevel && newLevel % 3 === 0 && newLevel <= 12) {
           artifactsInfo.push(this.logartifactDrop(proxy, resp.artifact));
-        //}
+        }
 		artifactLevel = newLevel;
+        break;
+      }
+	  case 'ConfirmArtifactConversion': {
+          artifactsInfo.push(this.logartifactDrop(proxy, resp.artifact));
         break;
       }
 
@@ -56,17 +60,11 @@ module.exports = {
 
   logartifactDrop(proxy, artifact) {
 	  try{
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop1-${artifactType}` });
 			const efficiency = this.getArtifactEfficiency(proxy, artifact);
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop2-${efficiency.current}` });
 			const artifactQuality = artifact.rank;
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop3-${artifactQuality}` });
 			const artifactType = this.getArtifactTypeName(artifact.type);
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop4-${artifact.type}` });
 			let artifactCategory = this.getArtifactUnitStyleName(artifact.unit_style)=="" ? this.getArtifactAttributeName(artifact.attribute) : this.getArtifactUnitStyleName(artifact.unit_style);
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop5-${artifactCategory}` });
 			const artifactMainStat = this.getArtifactMainStatAttribute(artifact.pri_effect[0]);
-			//proxy.log({ type: 'debug', source: 'plugin', name: this.pluginName, message: `LogArtifactDrop6-${artifactMainStat}` });
 			const artifactMainStatValue = artifact.pri_effect[1];
 			const colorTable = {
 			  1: 'grey', //Common
@@ -80,7 +78,7 @@ module.exports = {
 
 			let artifactEffectsHTML = this.mountArtifactEffects(artifact);
 
-			return `<div class="rune item" style:"font-size=10px">
+			return `<div class="rune item" style:"font-size=11px">
 					  <div class="ui image ${color} label">
 						<div class="category">${artifactCategory}</div>
 						<div class ="mainstat">${artifactMainStat}:${artifactMainStatValue}</div>
