@@ -1,0 +1,16 @@
+{
+  "name": "swex-artifacts",
+  "version": "1.0.0",
+  "description": "Artifact Effienciency in SWEX Plugin",
+  "main": "index.js",
+  "dependencies": {
+    "asar": "^2.0.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT Licensing"
+}
