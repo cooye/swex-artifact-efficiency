@@ -245,9 +245,9 @@ module.exports = {
 			case 224:
 				return "Single-target skill CRIT DMG X% on your turn";
 			case 225:
-				return "Counterattack/Co-op Attack DMG +${value}%";
+				return "Counterattack/Co-op Attack DMG +X%";
 			case 226:
-				return "ATK/DEF UP Effect +${value}%";
+				return "ATK/DEF UP Effect +X%";
 			case 300:
 				return "Damage Dealt on Fire +X%";
 			case 301:
@@ -289,9 +289,9 @@ module.exports = {
 			case 409:
 				return "Skill 3 Accuracy +X%";
 			case 410:
-				return "[Skill 3/4] CRIT DMG +${value}%";
+				return "[Skill 3/4] CRIT DMG +X%";
 			case 411:
-				return "First Attack CRIT DMG +${value}%";
+				return "First Attack CRIT DMG +X%";
 		}
 		return "Unknown";
 	},
