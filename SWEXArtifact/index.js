@@ -140,6 +140,7 @@ module.exports = {
 		switch(artifactType){
 			case 1: return "Attribute Artifact";
 			case 2: return "Type Artifact";
+			case 3: return "Intangible";
 		}
 		return "";
 	},
@@ -151,6 +152,7 @@ module.exports = {
 			case 3: return "Wind";
 			case 4: return "Light";
 			case 5: return "Dark";
+			case 6: return "Intangible";
 		}
 		return "";
 	},
@@ -161,6 +163,7 @@ module.exports = {
 			case 2: return "Defense";
 			case 3: return "HP";
 			case 4: return "Support";
+			case 5: return "Intangible";
 		}
 		return "";
 	},
@@ -241,6 +244,10 @@ module.exports = {
 				return "CRIT DMG+ up to X% as the enemy's HP condition is bad";
 			case 224:
 				return "Single-target skill CRIT DMG X% on your turn";
+			case 225:
+				return "Counterattack/Co-op Attack DMG +${value}%";
+			case 226:
+				return "ATK/DEF UP Effect +${value}%";
 			case 300:
 				return "Damage Dealt on Fire +X%";
 			case 301:
@@ -281,6 +288,10 @@ module.exports = {
 				return "Skill 2 Accuracy +X%";
 			case 409:
 				return "Skill 3 Accuracy +X%";
+			case 410:
+				return "[Skill 3/4] CRIT DMG +${value}%";
+			case 411:
+				return "First Attack CRIT DMG +${value}%";
 		}
 		return "Unknown";
 	},
@@ -338,6 +349,10 @@ module.exports = {
 				return 60.0;
 			case 224: //Single-target skill CRIT DMG X% on your turn
 				return 20.0;
+			case 225:
+				return 20.0;//"Counterattack/Co-op Attack DMG +${value}%";
+			case 226:
+				return 25.0;//"ATK/DEF UP Effect +${value}%";
 			case 300: //Damage Dealt on Fire +${value}%
 				return 25.0;
 			case 301: //Damage Dealt on Water +${value}%
@@ -378,6 +393,10 @@ module.exports = {
 				return 30.0;
 			case 409: //Skill 3 Accuracy +${value}%
 				return 30.0;
+			case 410:
+				return 30;//"[Skill 3/4] CRIT DMG +${value}%";
+			case 411:
+				return 30;//"First Attack CRIT DMG +${value}%";
 		}
 		return 0;
 	}
